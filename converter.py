@@ -20,7 +20,7 @@ for filename in os.listdir():
         text = data['textContent']
         # adding the title to each note with H1 header
         text = "<h1>" + data['title'] + "</h1>" + "\n\n" + text
-        date = (int(float(data['userEditedTimestampUsec'])))
+        date = (int(float(data['userEditedTimestampUsec'])/1000000))
         print(date)
         date = datetime.datetime.fromtimestamp(date).isoformat()
         #change the directory to where the standard file is
