@@ -14,6 +14,7 @@ print("Working directory changed to:     ",path, "\n")
 i = 0
 for filename in os.listdir():
     i = i + 1
+    print(filename)
     if filename.endswith(".json"):
         fil = open(filename)
         data = json.load(fil)
