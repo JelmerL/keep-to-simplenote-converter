@@ -1,0 +1,1 @@
+This is a simple converter written in Python to convert Google Keep notes into a JSON file accepted by the SimpleNote notes importer
