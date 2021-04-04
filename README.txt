@@ -4,7 +4,7 @@ This conversion performs the following operations:
 
 - Convert all text notes.
 - Converts checklists, retains checklist state (checked/unchecked).
-- Converts Google Keep note creation date to SimpleNote format.
+- Converts Google Keep note creation date to ISO 8601 format.
 
 Future support:
 
