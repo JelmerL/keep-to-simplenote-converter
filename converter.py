@@ -9,6 +9,7 @@ import datetime
 format = {"activeNotes": [],"trashedNotes": [{"content": "","creationDate": "2021-04-01T14:59:47.875Z","lastModified": "2021-04-01T16:32:53.898Z"}]}
 checked = "- [X] "
 unchecked = "- [ ] "
+errors = 0
 #Setting the correct directory and entering the Keep Files folder you should create containing the JSON files
 cwd = os.getcwd()
 path = os.path.join(cwd, 'Keep Files')
@@ -59,7 +60,6 @@ for filename in os.listdir():
             add_dictionary['content'] = data['title'] + '\n' + add_dictionary['content']
         except Exception as e: 
             print(e)
-            errors = errors +1
 
         #create new dictionary that needs to be appended under activenotes
         format['activeNotes'].append(add_dictionary)
@@ -77,6 +77,5 @@ for filename in os.listdir():
         pass
 
 print("\n","Number of notes converted:",i, "\n")
-print(errors, "errors found", "\n")
 print("Hit Enter to exit")
 input()
