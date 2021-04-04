@@ -72,7 +72,7 @@ for filename in os.listdir():
         
     else:
         #just in case there are no JSON files in the directory
-        print("No JSON files found or you are in the wrong directory")
+        print("Skipping File, not JSON")
         pass
 
 print("\n","Number of notes converted:",i, "\n")
