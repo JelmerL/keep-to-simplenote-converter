@@ -35,11 +35,10 @@ for filename in os.listdir():
         try:
             text = data['textContent']
             # adding the title to each note with H1 header
-            text = "<h1>" + data['title'] + "</h1>" + "\n\n" + text
+            text = data['title'] + "\n\n" + text
             add_dictionary['content'] = add_dictionary['content'] + text
-        except Exception:
-            pass
-
+        except Exception as e: 
+            print(e)
 
         #parse lists and check checkmark status format from keep --> listContent":[{"text":"#Development #Personal","isChecked":false}]
         try:
