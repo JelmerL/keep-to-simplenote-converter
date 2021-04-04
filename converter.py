@@ -12,27 +12,55 @@ path = os.path.join(cwd, 'Keep Files')
 os.chdir(path)
 print("Working directory changed to:     ",path, "\n")
 i = 0
+
+#loop through all files present
 for filename in os.listdir():
+    #keep track of the files looped through
     i = i + 1
-    print(filename)
+    #only run operations for JSON files
     if filename.endswith(".json"):
         fil = open(filename)
+        print(filename)
         data = json.load(fil)
-        text = data['textContent']
-        # adding the title to each note with H1 header
-        text = "<h1>" + data['title'] + "</h1>" + "\n\n" + text
-        date = (int(float(data['userEditedTimestampUsec'])/1000000))
-        print(date)
-        date = datetime.datetime.fromtimestamp(date).isoformat()
-        #change the directory to where the standard file is
-        os.chdir(cwd)
-        #open the JSON file
+        print(data)
+        #create dictionary used to store captured information
         add_dictionary = {}
-        add_dictionary['content'] = text
+        #capture date, should always be present so no tries here
+        date = (int(float(data['userEditedTimestampUsec'])/1000000))
+        date = datetime.datetime.fromtimestamp(date).isoformat()
         add_dictionary['creationDate'] = str(date)
+        #try statements to catch if none is present
+        #try adding text
+        try:
+            text = data['textContent']
+            # adding the title to each note with H1 header
+            text = "<h1>" + data['title'] + "</h1>" + "\n\n" + text
+            add_dictionary['content'] = text
+        except Exception:
+            pass
+
+
+        #parse lists and check checkmark status format from keep --> listContent":[{"text":"#Development #Personal","isChecked":false}]
+        try:
+            checklist = data['listContent']
+            print(checklist)
+            for i in checklist[i]:
+                liststring = checklist['text']
+                print(liststring)
+                ischecked = checklist['isChecked']
+                if ischecked == 'False':
+                    liststring = "[ ]" + liststring + '\r\n'
+                if ischecked == 'True':
+                    liststring = "[X]" + liststring + '\r\n'  
+                checklist.append(liststring)
+            add_dictionary[content] = checklist
+        except Exception:
+            pass    
+        print(add_dictionary)
         #create new dictionary that needs to be appended under activenotes
         format['activeNotes'].append(add_dictionary)
         #open the format file and write to it
+        os.chdir(cwd)
         with open('simplenote.json', 'w') as json_file:
             json.dump(format, json_file, indent = 3)
             print(i,": Added", filename, "to JSON")
