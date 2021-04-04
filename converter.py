@@ -4,6 +4,8 @@ import json
 import os
 import datetime
 
+#some standard string and dictionary formats used later on 
+
 format = {"activeNotes": [],"trashedNotes": [{"content": "","creationDate": "2021-04-01T14:59:47.875Z","lastModified": "2021-04-01T16:32:53.898Z"}]}
 checked = "- [X] "
 unchecked = "- [ ] "
@@ -42,7 +44,7 @@ for filename in os.listdir():
         try:
             checklist = data['listContent']
             print(checklist)
-            ####NEEDS FIXIN
+            #parse the checklist items in the correct format
             for key in checklist:
                 checklistcontents = ""
                 for keys in key:
@@ -55,6 +57,8 @@ for filename in os.listdir():
                     add_dictionary['content'] = add_dictionary['content'] + checklistcontents
                     if keys == 'text':
                         checklistcontents = key[keys] + checklistcontents
+            #add the title to the file
+            add_dictionary['content'] = data['title'] + '\n' + add_dictionary['content']
         except Exception as e: print(e)
         
         print(add_dictionary)
