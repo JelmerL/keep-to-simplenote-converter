@@ -5,8 +5,8 @@ import os
 import datetime
 
 format = {"activeNotes": [],"trashedNotes": [{"content": "","creationDate": "2021-04-01T14:59:47.875Z","lastModified": "2021-04-01T16:32:53.898Z"}]}
-checked = "[X] "
-unchecked = "[ ] "
+checked = "- [X] "
+unchecked = "- [ ] "
 #Setting the correct directory and entering the Keep Files folder you should create containing the JSON files
 cwd = os.getcwd()
 path = os.path.join(cwd, 'Keep Files')
