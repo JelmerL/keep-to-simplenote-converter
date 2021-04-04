@@ -5,7 +5,8 @@ import os
 import datetime
 
 format = {"activeNotes": [],"trashedNotes": [{"content": "","creationDate": "2021-04-01T14:59:47.875Z","lastModified": "2021-04-01T16:32:53.898Z"}]}
-
+checked = "[X] "
+unchecked = "[ ] "
 #Setting the correct directory and entering the Keep Files folder you should create containing the JSON files
 cwd = os.getcwd()
 path = os.path.join(cwd, 'Keep Files')
@@ -19,23 +20,20 @@ for filename in os.listdir():
     i = i + 1
     #only run operations for JSON files
     if filename.endswith(".json"):
+        add_dictionary = {"content": ""}
         fil = open(filename)
         print(filename)
         data = json.load(fil)
-        print(data)
-        #create dictionary used to store captured information
-        add_dictionary = {}
         #capture date, should always be present so no tries here
         date = (int(float(data['userEditedTimestampUsec'])/1000000))
         date = datetime.datetime.fromtimestamp(date).isoformat()
         add_dictionary['creationDate'] = str(date)
-        #try statements to catch if none is present
         #try adding text
         try:
             text = data['textContent']
             # adding the title to each note with H1 header
             text = "<h1>" + data['title'] + "</h1>" + "\n\n" + text
-            add_dictionary['content'] = text
+            add_dictionary['content'] = add_dictionary['content'] + text
         except Exception:
             pass
 
@@ -44,26 +42,21 @@ for filename in os.listdir():
         try:
             checklist = data['listContent']
             print(checklist)
-            
-            
             ####NEEDS FIXIN
-            
-            
             for key in checklist:
-                for key1 in key:
-                    print(key1)
-                    if key1 == 'text':
-                        liststring = checklist[key]
-                        print(liststring)
-                    if key1 == 'isChecked':
-                        if checklist[key] == 'False':
-                            liststring = "[ ]" + liststring + '\r\n'
-                        if checklist[key] == 'Talse':
-                            liststring = "[X]" + liststring + '\r\n'  
-                    add_dictionary.append(liststring)
-            #add_dictionary['content'] = liststring
-        except Exception:
-            pass    
+                checklistcontents = ""
+                for keys in key:
+                    if keys == 'text':
+                        checklistcontents = checklistcontents + key[keys]
+                    if keys == 'isChecked':
+                        if key[keys] == True:
+                            checklistcontents = checked + checklistcontents + "\r\n"
+                        if key[keys] == False:
+                            checklistcontents = unchecked + checklistcontents + "\r\n"
+                        print(checklistcontents)
+                    add_dictionary['content'] = add_dictionary['content'] + checklistcontents
+        except Exception as e: print(e)
+        
         print(add_dictionary)
         #create new dictionary that needs to be appended under activenotes
         format['activeNotes'].append(add_dictionary)
