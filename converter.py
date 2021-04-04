@@ -59,6 +59,7 @@ for filename in os.listdir():
             add_dictionary['content'] = data['title'] + '\n' + add_dictionary['content']
         except Exception as e: 
             print(e)
+            errors = errors +1
 
         #create new dictionary that needs to be appended under activenotes
         format['activeNotes'].append(add_dictionary)
@@ -76,5 +77,6 @@ for filename in os.listdir():
         pass
 
 print("\n","Number of notes converted:",i, "\n")
+print(errors, "errors found", "\n")
 print("Hit Enter to exit")
 input()
