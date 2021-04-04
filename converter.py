@@ -43,7 +43,6 @@ for filename in os.listdir():
         #parse lists and check checkmark status format from keep --> listContent":[{"text":"#Development #Personal","isChecked":false}]
         try:
             checklist = data['listContent']
-            print(checklist)
             #parse the checklist items in the correct format
             for key in checklist:
                 checklistcontents = ""
@@ -53,28 +52,28 @@ for filename in os.listdir():
                             checklistcontents = checked + checklistcontents + "\r\n"
                         if key[keys] == False:
                             checklistcontents = unchecked + checklistcontents + "\r\n"
-                        print(checklistcontents)
                     add_dictionary['content'] = add_dictionary['content'] + checklistcontents
                     if keys == 'text':
                         checklistcontents = key[keys] + checklistcontents
             #add the title to the file
             add_dictionary['content'] = data['title'] + '\n' + add_dictionary['content']
-        except Exception as e: print(e)
-        
-        print(add_dictionary)
+        except Exception as e: 
+            print(e)
+
         #create new dictionary that needs to be appended under activenotes
         format['activeNotes'].append(add_dictionary)
-        #open the format file and write to it
+        #change the directory to where the JSON export file is located and write to it
         os.chdir(cwd)
         with open('simplenote.json', 'w') as json_file:
             json.dump(format, json_file, indent = 3)
             print(i,": Added", filename, "to JSON")
         #change the directory back to where the Keep files are before going through to the next file
         os.chdir(path)
-        print("changed to", path)
+        
     else:
         #just in case there are no JSON files in the directory
         print("No JSON files found or you are in the wrong directory")
+        pass
 
 print("\n","Number of notes converted:",i, "\n")
 print("Hit Enter to exit")
