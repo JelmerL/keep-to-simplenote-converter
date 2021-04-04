@@ -71,6 +71,7 @@ for filename in os.listdir():
             print(i,": Added", filename, "to JSON")
         #change the directory back to where the Keep files are before going through to the next file
         os.chdir(path)
+        print("changed to", path)
     else:
         #just in case there are no JSON files in the directory
         print("No JSON files found or you are in the wrong directory")

@@ -9,6 +9,7 @@ This conversion performs the following operations:
 Future support:
 
 - Convert and add labels.
+- Automatically enable markdown setting ON for notes with checkmarks, currently required to manually enable to be able to check/uncheck lines in simplenote
 
 Not supported:
 
