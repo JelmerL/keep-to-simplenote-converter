@@ -19,10 +19,10 @@ i = 0
 
 #loop through all files present
 for filename in os.listdir():
-    #keep track of the files looped through
-    i = i + 1
     #only run operations for JSON files
     if filename.endswith(".json"):
+        #keep track of the files looped through
+        i = i +1
         add_dictionary = {"content": ""}
         fil = open(filename)
         print(filename)
