@@ -46,8 +46,6 @@ for filename in os.listdir():
             for key in checklist:
                 checklistcontents = ""
                 for keys in key:
-                    if keys == 'text':
-                        checklistcontents = checklistcontents + key[keys]
                     if keys == 'isChecked':
                         if key[keys] == True:
                             checklistcontents = checked + checklistcontents + "\r\n"
@@ -55,6 +53,8 @@ for filename in os.listdir():
                             checklistcontents = unchecked + checklistcontents + "\r\n"
                         print(checklistcontents)
                     add_dictionary['content'] = add_dictionary['content'] + checklistcontents
+                    if keys == 'text':
+                        checklistcontents = key[keys] + checklistcontents
         except Exception as e: print(e)
         
         print(add_dictionary)

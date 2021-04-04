@@ -9,7 +9,7 @@
          "creationDate": "2017-09-09T22:28:51"
       },
       {
-         "content": "#Development #Personal[ ] #Development #Personal\r\n1234567 [ ] 1234567 \r\n1234567[ ] 1234567\r\n1234567[X] 1234567\r\n1234567[X] 1234567\r\n123456[X] 123456\r\n",
+         "content": "[ ] #Development #Personal\r\n[ ] 1234567 \r\n[ ] 1234567\r\n[X] 1234567\r\n[X] 1234567\r\n[X] 123456\r\n",
          "creationDate": "2017-05-01T14:08:06"
       }
    ],
