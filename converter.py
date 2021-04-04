@@ -44,16 +44,24 @@ for filename in os.listdir():
         try:
             checklist = data['listContent']
             print(checklist)
-            for i in checklist[i]:
-                liststring = checklist['text']
-                print(liststring)
-                ischecked = checklist['isChecked']
-                if ischecked == 'False':
-                    liststring = "[ ]" + liststring + '\r\n'
-                if ischecked == 'True':
-                    liststring = "[X]" + liststring + '\r\n'  
-                checklist.append(liststring)
-            add_dictionary[content] = checklist
+            
+            
+            ####NEEDS FIXIN
+            
+            
+            for key in checklist:
+                for key1 in key:
+                    print(key1)
+                    if key1 == 'text':
+                        liststring = checklist[key]
+                        print(liststring)
+                    if key1 == 'isChecked':
+                        if checklist[key] == 'False':
+                            liststring = "[ ]" + liststring + '\r\n'
+                        if checklist[key] == 'Talse':
+                            liststring = "[X]" + liststring + '\r\n'  
+                    add_dictionary.append(liststring)
+            #add_dictionary['content'] = liststring
         except Exception:
             pass    
         print(add_dictionary)
